@@ -21,6 +21,10 @@ Creați o metodă încărcare ce va crește bateria cu 10%.
 Creați un UI care va conține un form pentru un vehicul. Adăugați un buton radio dacă vehiculul este electric.
 Adăugați câte un buton pentru accelerare, frânare și, eventual, încărcare.*/
 
+
+//proprietatilie care fac parte din clasa parinte trebuie sa fie 
+//protected ca sa fie accesivile si pentru clasa copil
+
 //clase and metode
 class Masina {
     #model;
@@ -28,23 +32,23 @@ class Masina {
     #anFabricare;
     #viteza;
     constructor(model, culoare, anFabricare, viteza) {
-      this.#model = model;
-      this.#culoare = culoare;
-      this.#anFabricare = anFabricare;
-      this.#viteza = viteza;
+      this._model = model;
+      this._culoare = culoare;
+      this._anFabricare = anFabricare;
+      this._viteza = viteza;
     }
     
     getModel(){
       return `Numele Masinei ${this._model}.`
     };
     setModel(model) {
-      this.#model = model;
+      this._model = model;
     };
     getCuloare(){
       return `Are culoare ${this._culoare}.`
     };
     setCuloare(culoare) {
-      this.#culoare = culoare;
+      this._culoare = culoare;
     };
 
     accelereazaViteza() {
@@ -64,7 +68,7 @@ class Masina {
   class VehiculElectric extends Masina {
     constructor(model, culoare, anFabricare, viteza, baterie) {
       super(model, culoare, anFabricare, viteza);
-      this.baterie = baterie;
+      this._baterie = baterie;
     }
   
     accelereazaViteza() {
@@ -113,6 +117,8 @@ document.querySelector(".incarcareBaterie").addEventListener('click', function()
 });
 
     const masina2 = new VehiculElectric("Tesla", "alba", 2020, 100, 40 )
-    console.log(masina2.getModel("Tesla"));
-    console.log(masina2.getCuloare("alba"));
+    console.log(masina2.getModel());
+    console.log(masina2.setCuloare("Verde"));
+    console.log(masina2.getCuloare());
+    
     
