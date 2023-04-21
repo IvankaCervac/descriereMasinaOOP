@@ -31,6 +31,7 @@ class Masina {
     #culoare;
     #anFabricare;
     #viteza;
+    
     constructor(model, culoare, anFabricare, viteza) {
       this._model = model;
       this._culoare = culoare;
@@ -50,26 +51,45 @@ class Masina {
     setCuloare(culoare) {
       this._culoare = culoare;
     };
-
+    getanFabricare(){
+      return `Fabricata in ${this._anFabricare}.`
+    };
+    setAnFabricare(anFabricare) {
+      this._anFabricare = anFabricare;
+    };
+    getViteza(){
+      return `Merge cu ${this._viteza} km/h.`
+    };
+    setViteza(viteza) {
+      this._viteza = viteza;
+    };
     accelereazaViteza() {
       this.viteza += 10;
-    }
+    };
   
     franeazaViteza() {
       this.viteza -= 10;
-    }
+    };
   
     descriere() {
       let descriere = `Masina e de modelul:${this.model} si are culoarea ${this.culoare}, fabricata in ${this.anFabricare} merge cu ${this.viteza} km/h`;
       return descriere;
     }
-  }
+    }
+
   
-  class VehiculElectric extends Masina {
+class VehiculElectric extends Masina {
     constructor(model, culoare, anFabricare, viteza, baterie) {
       super(model, culoare, anFabricare, viteza);
       this._baterie = baterie;
     }
+
+    getBaterie(){
+      return `Bateria este de ${this._baterie} %.`
+    };
+    setBaterie(baterie) {
+      this._baterie = baterie;
+    };
   
     accelereazaViteza() {
       this.viteza += 10;
@@ -79,11 +99,27 @@ class Masina {
     incarcare() {
       this.baterie += 10;
     }
-  
+
     descriere() {
       let descriere = `Masina e de modelul:${this.model} si are culoarea ${this.culoare}, fabricata in ${this.anFabricare} merge cu ${this.viteza} km/h și are bateria ${this.baterie}`;
       return descriere;
     }
+
+    verificaTipMasina()
+      if (this.anFabricare <= 2005) {
+        return this.descriere 
+      } else {
+        return VehiculElectric.descriere
+      }
+
+  
+    check() {
+      document.getElementById("alege1").checked = true;
+    }
+    uncheck() {
+      document.getElementById("alege1").checked = false;
+    }
+  
   }
   
   //variabilele
@@ -120,5 +156,6 @@ document.querySelector(".incarcareBaterie").addEventListener('click', function()
     console.log(masina2.getModel());
     console.log(masina2.setCuloare("Verde"));
     console.log(masina2.getCuloare());
-    
+    console.log(masina2.setViteza(10));
+    console.log(masina2.getViteza());
     
