@@ -27,111 +27,110 @@ Adăugați câte un buton pentru accelerare, frânare și, eventual, încărcare
 
 //clase and metode
 class Masina {
-    #model;
-    #culoare;
-    #anFabricare;
-    #viteza;
-    
-    constructor(model, culoare, anFabricare, viteza) {
-      this._model = model;
-      this._culoare = culoare;
-      this._anFabricare = anFabricare;
-      this._viteza = viteza;
-    }
-    
-    getModel(){
-      return `Numele Masinei ${this._model}.`
-    };
-    setModel(model) {
-      this._model = model;
-    };
-    getCuloare(){
-      return `Are culoare ${this._culoare}.`
-    };
-    setCuloare(culoare) {
-      this._culoare = culoare;
-    };
-    getanFabricare(){
-      return `Fabricata in ${this._anFabricare}.`
-    };
-    setAnFabricare(anFabricare) {
-      this._anFabricare = anFabricare;
-    };
-    getViteza(){
-      return `Merge cu ${this._viteza} km/h.`
-    };
-    setViteza(viteza) {
-      this._viteza = viteza;
-    };
-    accelereazaViteza() {
-      this.viteza += 10;
-    };
+  _model;
+  _culoare;
+  _anFabricare;
+  _viteza;
   
-    franeazaViteza() {
-      this.viteza -= 10;
-    };
-  
-    descriere() {
-      let descriere = `Masina e de modelul:${this.model} si are culoarea ${this.culoare}, fabricata in ${this.anFabricare} merge cu ${this.viteza} km/h`;
-      return descriere;
-    }
-    }
+  constructor(model, culoare, anFabricare, viteza) {
+    this._model = model;
+    this._culoare = culoare;
+    this._anFabricare = anFabricare;
+    this._viteza = viteza;
+  }
+    
+  getModel(){
+    return `Numele Mașinii este ${this._model}.`;
+  }
+  setModel(model) {
+    this._model = model;
+  }
+  getCuloare(){
+    return `Are culoarea ${this._culoare}.`;
+  }
+  setCuloare(culoare) {
+    this._culoare = culoare;
+  }
+  getAnFabricare(){
+    return `Fabricată în ${this._anFabricare}.`;
+  }
+  setAnFabricare(anFabricare) {
+    this._anFabricare = anFabricare;
+  }
+  getViteza(){
+    return `Merge cu ${this._viteza} km/h.`;
+  }
+  setViteza(viteza) {
+    this._viteza = viteza;
+  }
+  accelereazaViteza() {
+    this._viteza += 10;
+  }
+
+  franeazaViteza() {
+    this._viteza -= 10;
+  }
+
+  descriere() {
+    let descriere = `Mașina este de modelul ${this._model} și are culoarea ${this._culoare}, fabricată în ${this._anFabricare} și merge cu ${this._viteza} km/h.`;
+    return descriere;
+  }
+}
 
   
 class VehiculElectric extends Masina {
-    constructor(model, culoare, anFabricare, viteza, baterie) {
-      super(model, culoare, anFabricare, viteza);
-      this._baterie = baterie;
+  constructor(model, culoare, anFabricare, viteza, baterie) {
+    super(model, culoare, anFabricare, viteza);
+    this._baterie = baterie;
     }
 
     getBaterie(){
-      return `Bateria este de ${this._baterie} %.`
-    };
+      return `Bateria este de ${this._baterie}%.`;
+    }
     setBaterie(baterie) {
       this._baterie = baterie;
-    };
+    }
   
     accelereazaViteza() {
-      this.viteza += 10;
-      this.baterie -= 5;
+      this._viteza += 10;
+      this._baterie -= 5;
     }
   
     incarcare() {
-      this.baterie += 10;
+      this._baterie += 10;
     }
 
     descriere() {
-      let descriere = `Masina e de modelul:${this.model} si are culoarea ${this.culoare}, fabricata in ${this.anFabricare} merge cu ${this.viteza} km/h și are bateria ${this.baterie}`;
+      let descriere = `Mașina este de modelul ${this._model} și are culoarea ${this._culoare}, fabricată în ${this._anFabricare} și merge cu ${this._viteza} km/h, cu o baterie de ${this._baterie}%.`;
       return descriere;
     }
 
-    verificaTipMasina()
-      if (this.anFabricare <= 2005) {
-        return this.descriere 
+    verificaTipMasina() {
+      if (this._anFabricare <= 2005) {
+        return this.descriere();
       } else {
-        return VehiculElectric.descriere
+        return super.descriere();
       }
-
+    }
   
     check() {
-      document.getElementById("alege1").checked = true;
+        document.getElementById("alege1").checked = true;
     }
     uncheck() {
-      document.getElementById("alege1").checked = false;
+        document.getElementById("alege1").checked = false;
     }
+}
+
   
-  }
-  
-  //variabilele
-  let model = document.querySelector(".model").value;
-  let culoare = document.querySelector(".culoare").value;
-  let anFabricare = document.querySelector(".anFabricare").value;
-  let viteza = document.querySelector(".viteza").value;
-  let baterie = document.querySelector(".baterie");
+//variabilele
+let model = document.querySelector(".model").value;
+let culoare = document.querySelector(".culoare").value;
+let anFabricare = document.querySelector(".anFabricare").value;
+let viteza = document.querySelector(".viteza").value;
+let baterie = document.querySelector(".baterie");
 
 // eventListener
 document.querySelector(".acceleramViteza").addEventListener('click', function(){
-//  let viteza = viteza.value;
     console.log(masina2.descriere());
     masina2.accelereazaViteza();
     console.log(masina2.descriere());
